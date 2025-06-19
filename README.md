@@ -746,6 +746,7 @@ def merge_segments(
 #### 5.3 格式化输出
  
  
+
  
     format_vad_result(格式化检测结果)
  
@@ -763,4 +764,3 @@ def merge_segments(
         - dict: {"segments": [...], "stats": {...}}
         - json: JSON字符串
         - kaldi: Kaldi格式文本
-    """
