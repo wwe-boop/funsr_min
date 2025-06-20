@@ -1,5 +1,5 @@
 # FunASR-VAD 
-
+https://quic.github.io/aimet-pages/releases/latest/install/quick-start.html
 ## 概述
 
 FunASR-VAD是基于FSMN（Feedforward Sequential Memory Network）的语音活动检测系统，能够实时检测音频中的语音段和静音段，相当于做了一个二分类输出，在语音领域简单但是也很重要。
