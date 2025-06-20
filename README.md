@@ -764,3 +764,44 @@ def merge_segments(
         - dict: {"segments": [...], "stats": {...}}
         - json: JSON字符串
         - kaldi: Kaldi格式文本
+
+
+
+from funasr import AutoModel
+└── funasr/__init__.py 导入 AutoModel
+model = AutoModel(model="fsmn_model")
+└── funasr/auto/auto_model.py: AutoModel.__init__()
+    └── funasr/train_utils/set_all_random_seed.py: set_all_random_seed()
+    └── funasr/download/download_model_from_hub.py: download_model()
+    └── funasr/auto/auto_model.py: read_config()
+    └── funasr/auto/auto_model.py: build_model()
+        └── funasr/auto/auto_model.py: build_vad_model()
+            └── funasr/models/vad/fsmn_vad.py: FsmnVADStreaming.__init__()
+            └── funasr/train_utils/load_pretrained_model.py: load_state_dict()
+            #模型推理
+            └── funasr/auto/auto_model.py: AutoModel.generate()
+                └── funasr/auto/auto_model.py: prepare_data_iterator()
+                └── funasr/auto/auto_model.py: inference()
+                    └── funasr/utils/load_utils.py: load_audio()
+                    └── funasr/models/vad/fsmn_vad.py: model.__call__()
+                        └── funasr/models/vad/fsmn_vad.py: model.forward()
+                            └── funasr/models/vad/fsmn_vad.py: init_cache()
+                            └── funasr/models/vad/fsmn_vad.py: extract_feats()
+                                └── funasr/frontends/default.py: frontend()
+                                └── funasr/models/vad/fsmn_vad.py: apply_cmvn()
+                                └── funasr/models/vad/fsmn_vad.py: apply_lfr()
+                            └── funasr/models/vad/fsmn_vad.py: ComputeDecibel()
+                            └── funasr/models/vad/fsmn_vad.py: ComputeScores()
+                                └── funasr/models/vad/fsmn_encoder.py: encoder()
+                            └── funasr/models/vad/fsmn_vad.py: DetectCommonFrames()/DetectLastFrames()
+                                └── funasr/models/vad/fsmn_vad.py: GetFrameState()
+                                └── funasr/models/vad/fsmn_vad.py: DetectOneFrame()
+                                    └── funasr/models/vad/window_detector.py: windows_detector.DetectOneFrame()
+                                    └── funasr/models/vad/fsmn_vad.py: OnVoiceStart()/OnVoiceEnd()
+                            └── funasr/models/vad/fsmn_vad.py: collect_segments()
+                                └── funasr/models/vad/fsmn_vad.py: format_segment()
+                            └── funasr/utils/vad_utils.py: merge_segments()
+                            └── funasr/utils/vad_utils.py: filter_segments()
+                            └── funasr/utils/vad_utils.py: format_vad_result()
+                                └── funasr/utils/vad_utils.py: convert_time_unit()
+                                └── funasr/utils/vad_utils.py: build_output_format()
